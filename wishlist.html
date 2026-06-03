@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wishlist — Showcase</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="wishlist">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Showcase</a>
+      <nav class="nav-main" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="wishlist.html" class="is-active">Wishlist</a>
+        <a href="#">Consultation</a>
+      </nav>
+      <div class="header-actions">
+        <div class="currency-toggle" data-currency-toggle>
+          <button type="button" data-currency="USD" class="is-active">USD</button>
+          <button type="button" data-currency="EUR">EUR</button>
+        </div>
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-8-5.4-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.6-8 11-8 11z"/></svg>
+          <span class="badge hidden" data-wishlist-count>0</span>
+        </a>
+        <a href="cart.html" class="icon-btn" aria-label="Bag">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L5 3H2"/></svg>
+          <span class="badge hidden" data-cart-count>0</span>
+        </a>
+        <button type="button" class="menu-toggle" data-menu-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" data-mobile-nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html">Bag</a>
+    </nav>
+  </header>
+
+  <main class="section container">
+    <header class="page-title">
+      <p class="eyebrow">Saved Pieces</p>
+      <h1>Wishlist</h1>
+    </header>
+
+    <div class="empty-state" data-wishlist-empty>
+      <h2>No saved pieces yet</h2>
+      <p>Use the heart on any product card to build your edit.</p>
+      <a href="shop.html" class="btn" style="margin-top: var(--space-md);">Browse the Boutique</a>
+    </div>
+
+    <div class="product-grid hidden" data-wishlist-grid></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Showcase</span>
+        <p>Curated luxury marketplace. Domain: showcase</p>
+      </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <ul>
+          <li><a href="shop.html">Shop All</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Client Care</h4>
+        <ul>
+          <li><a href="#">Consultation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>House</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Showcase · showcase</span>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

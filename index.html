@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Showcase — A curated luxury marketplace for discerning collectors." />
+  <title>Showcase — Curated Luxury</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="Showcase home">Showcase</a>
+      <nav class="nav-main" aria-label="Primary">
+        <a href="index.html" class="is-active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="#">Consultation</a>
+      </nav>
+      <div class="header-actions">
+        <div class="currency-toggle" data-currency-toggle>
+          <button type="button" data-currency="USD" class="is-active">USD</button>
+          <button type="button" data-currency="EUR">EUR</button>
+        </div>
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-8-5.4-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.6-8 11-8 11z"/></svg>
+          <span class="badge hidden" data-wishlist-count>0</span>
+        </a>
+        <a href="cart.html" class="icon-btn" aria-label="Bag">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L5 3H2"/></svg>
+          <span class="badge hidden" data-cart-count>0</span>
+        </a>
+        <button type="button" class="menu-toggle" data-menu-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="mobile-nav" data-mobile-nav aria-label="Mobile">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="#">Consultation</a>
+      <a href="cart.html">Bag</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&q=85" alt="Luxury fashion editorial" width="1920" height="1080" />
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="container hero__content">
+        <p class="eyebrow">Est. 2026 · showcase</p>
+        <h1>The Art of Curated Luxury</h1>
+        <p class="lead">Discover exceptional pieces from world-class maisons—presented with the discretion and polish your collection deserves.</p>
+        <div class="hero__actions">
+          <a href="shop.html" class="btn">Explore the Boutique</a>
+          <a href="#" class="btn btn--outline">Private Consultation</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="text-center" style="margin-bottom: var(--space-lg);">
+        <p class="eyebrow">Featured Collections</p>
+        <h2>Selected for the Season</h2>
+      </div>
+      <div class="product-grid" data-featured-grid></div>
+      <p class="text-center mt-lg">
+        <a href="shop.html" class="btn btn--outline">View All Pieces</a>
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="text-center" style="margin-bottom: var(--space-lg);">
+        <p class="eyebrow">Curated Edits</p>
+        <h2>Shop by Collection</h2>
+      </div>
+      <div class="collections-editorial">
+        <a href="shop.html?category=Jewellery" class="collection-tile">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Fine jewellery collection" width="800" height="1000" loading="lazy" />
+          <div class="collection-tile__overlay">
+            <h3>High Jewellery</h3>
+            <span>Explore edit</span>
+          </div>
+        </a>
+        <a href="shop.html?category=Clothing" class="collection-tile">
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c726dae?w=800&q=80" alt="Clothing collection" width="800" height="1000" loading="lazy" />
+          <div class="collection-tile__overlay">
+            <h3>Ready-to-Wear</h3>
+            <span>Explore edit</span>
+          </div>
+        </a>
+        <a href="shop.html?category=Lifestyle" class="collection-tile">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&q=80" alt="Lifestyle collection" width="800" height="1000" loading="lazy" />
+          <div class="collection-tile__overlay">
+            <h3>Lifestyle &amp; Home</h3>
+            <span>Explore edit</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section--tight container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Jewellery</p>
+          <h3>Objects of Desire</h3>
+        </div>
+        <a href="shop.html?category=Jewellery" class="btn btn--ghost">View collection</a>
+      </div>
+      <div class="product-grid collection-mini-grid" data-collection-grid="Jewellery"></div>
+    </section>
+
+    <section class="section--tight container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Shoes</p>
+          <h3>Artisan Footwear</h3>
+        </div>
+        <a href="shop.html?category=Shoes" class="btn btn--ghost">View collection</a>
+      </div>
+      <div class="product-grid collection-mini-grid" data-collection-grid="Shoes"></div>
+    </section>
+
+    <section class="section container split-section">
+      <div class="split-section__img">
+        <img src="https://images.unsplash.com/photo-1558171813-4c088f5c6f0f?w=900&q=80" alt="Atelier craftsmanship" width="900" height="1125" loading="lazy" />
+      </div>
+      <div>
+        <p class="eyebrow">Our Story</p>
+        <h2>Where Heritage Meets the Digital Atelier</h2>
+        <p class="lead" style="max-width: none; margin-top: var(--space-md);">
+          Showcase was conceived as a sanctuary for rare fashion, fine jewellery, and considered lifestyle objects. Every listing is vetted; every experience is editorial.
+        </p>
+        <p style="margin-top: var(--space-md); color: var(--color-text-muted);">
+          From private trunk shows to global delivery, we unite maison authenticity with a seamless digital journey—never loud, always assured.
+        </p>
+        <a href="#" class="btn btn--accent" style="margin-top: var(--space-lg);">Request a Consultation</a>
+      </div>
+    </section>
+
+    <section class="container stats-row">
+      <div class="stat">
+        <p class="stat__value">48+</p>
+        <p class="stat__label">Partner Maisons</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value">120</p>
+        <p class="stat__label">Countries Served</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value">24/7</p>
+        <p class="stat__label">Concierge</p>
+      </div>
+      <div class="stat">
+        <p class="stat__value">100%</p>
+        <p class="stat__label">Authenticated</p>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2>Begin Your Collection</h2>
+      <p>Explore the boutique or speak with our concierge for bespoke sourcing and private appointments.</p>
+      <a href="shop.html" class="btn">Shop Now</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Showcase</span>
+        <p>Curated luxury marketplace. Domain: showcase</p>
+      </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <ul>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="shop.html?category=Clothing">Clothing</a></li>
+          <li><a href="shop.html?category=Jewellery">Jewellery</a></li>
+          <li><a href="shop.html?category=Shoes">Shoes</a></li>
+          <li><a href="shop.html?category=Lifestyle">Lifestyle</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Client Care</h4>
+        <ul>
+          <li><a href="#">Consultation</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>House</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Showcase. All rights reserved.</span>
+      <span>showcase — Luxury Marketplace POC</span>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
