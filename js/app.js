@@ -9,7 +9,127 @@
     cart: 'showcase_cart',
     wishlist: 'showcase_wishlist',
     currency: 'showcase_currency',
+    user: 'showcase_user',
   };
+
+  function getUser() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEYS.user) || 'null');
+    } catch {
+      return null;
+    }
+  }
+
+  function setUser(user) {
+    if (user) localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(user));
+    else localStorage.removeItem(STORAGE_KEYS.user);
+    document.dispatchEvent(new CustomEvent('showcase:auth'));
+  }
+
+  function displayName(user) {
+    if (!user) return '';
+    if (user.displayName) return user.displayName;
+    var email = user.email || '';
+    var local = email.split('@')[0] || 'Guest';
+    return local.charAt(0).toUpperCase() + local.slice(1);
+  }
+
+  function loginReturnUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var ret = params.get('return');
+    if (ret && !ret.includes('login.html')) return ret;
+    return 'index.html';
+  }
+
+  function accountIconSvg() {
+    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>';
+  }
+
+  function initAccountUI() {
+    var actions = document.querySelector('.header-actions');
+    if (!actions) return;
+    var existing = actions.querySelector('[data-account-root]');
+    if (existing) existing.remove();
+
+    var root = document.createElement('div');
+    root.className = 'account-root';
+    root.setAttribute('data-account-root', '');
+    var anchor = actions.querySelector('a[href*="wishlist"]');
+    actions.insertBefore(root, anchor || actions.firstChild);
+
+    function render() {
+      var user = getUser();
+      if (user) {
+        root.innerHTML =
+          '<div class="account-menu is-open-ready">' +
+          '<button type="button" class="account-trigger" data-account-trigger aria-expanded="false">' +
+          accountIconSvg() +
+          '<span class="account-name">' +
+          displayName(user) +
+          '</span></button>' +
+          '<div class="account-dropdown" data-account-dropdown hidden>' +
+          '<p class="account-dropdown__email">' +
+          (user.email || '') +
+          '</p>' +
+          '<button type="button" class="account-dropdown__logout" data-logout>Sign out</button>' +
+          '</div></div>';
+        var trigger = root.querySelector('[data-account-trigger]');
+        var dropdown = root.querySelector('[data-account-dropdown]');
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var open = dropdown.hasAttribute('hidden');
+          dropdown.toggleAttribute('hidden', !open);
+          trigger.setAttribute('aria-expanded', String(open));
+        });
+        root.querySelector('[data-logout]').addEventListener('click', function () {
+          setUser(null);
+          showToast('Signed out');
+          window.location.href = 'index.html';
+        });
+        document.addEventListener('click', function closeAccountMenu(e) {
+          if (!root.contains(e.target)) {
+            dropdown.setAttribute('hidden', '');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      } else {
+        var returnParam = encodeURIComponent(window.location.pathname.split('/').pop() || 'index.html');
+        root.innerHTML =
+          '<a href="login.html?return=' +
+          returnParam +
+          '" class="icon-btn account-signin" aria-label="Sign in">' +
+          accountIconSvg() +
+          '</a>';
+      }
+    }
+
+    render();
+    document.addEventListener('showcase:auth', render);
+  }
+
+  function initLoginPage() {
+    var form = document.querySelector('[data-login-form]');
+    var forgot = document.querySelector('[data-forgot-password]');
+    if (forgot) {
+      forgot.addEventListener('click', function (e) {
+        e.preventDefault();
+        showToast('Password reset — available in production');
+      });
+    }
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.email.value.trim();
+      var password = form.password.value;
+      if (!email || !password) {
+        showToast('Enter email and password');
+        return;
+      }
+      setUser({ email: email, displayName: displayName({ email: email }) });
+      showToast('Welcome, ' + displayName({ email: email }));
+      window.location.href = loginReturnUrl();
+    });
+  }
 
   function getCurrency() {
     return sessionStorage.getItem(STORAGE_KEYS.currency) || 'USD';
@@ -604,17 +724,24 @@
   }
 
   function boot() {
+    initHeader();
+    initAccountUI();
+
+    var page = document.body.dataset.page;
+    if (page === 'login') {
+      initLoginPage();
+      return;
+    }
+
     if (!window.ShowcaseCatalog) {
       console.error('Showcase: products.js must load before app.js');
       return;
     }
-    initHeader();
     initCurrencyToggle();
     renderBadges();
     document.addEventListener('showcase:cart', renderBadges);
     document.addEventListener('showcase:wishlist', renderBadges);
 
-    var page = document.body.dataset.page;
     if (page === 'shop') initShopPage();
     if (page === 'product') initProductPage();
     if (page === 'cart') initCartPage();

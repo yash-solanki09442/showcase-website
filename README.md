@@ -11,6 +11,7 @@ Static, high-polish demo for client **Showcase**. No backend; cart, wishlist, an
 | Product detail | `product.html?id={product-id}` |
 | Bag | `cart.html` |
 | Wishlist | `wishlist.html` |
+| Sign in (mock) | `login.html` |
 
 ## Local preview
 
@@ -70,6 +71,16 @@ In Vercel → Project → **Settings → Domains**, add `showcase` (or your real
 - `js/app.js` — cart, wishlist, currency, page logic
 - `PROPOSAL.md` — client proposal (PDF-ready)
 
-## Proposal
+## Documentation
 
-See `PROPOSAL.md` for executive summary, stack recommendation, phases, costs, and next steps.
+| Doc | Purpose |
+|-----|---------|
+| `PROPOSAL.md` | Full client proposal (PDF-ready) |
+| `docs/CLIENT_REVIEW.md` | Stakeholder walkthrough & sign-off checklist |
+| `docs/BACKEND_DECISION.md` | Django vs FastAPI — Phase 1 decision |
+| `docs/DEPLOYMENT.md` | Vercel / repo strategy (avoid dual-repo drift) |
+| `../showcase-platform/` | Phase 1 monorepo (Next.js + Django) |
+
+**Live POC:** https://showcase-website-ochre.vercel.app/
+
+Sync to Vercel deploy repo (if still using two repos): `.\scripts\sync-to-vercel-repo.ps1 -TargetPath "path\to\showcase-website"`
